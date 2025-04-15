@@ -2,7 +2,7 @@ discordWebhook:
   programs_watcher: https://discordapp.com/api/webhooks/1360897662471376907/AYsLeFuX2WhcJ9bUQnEyJsGKvH7VqXfo4zlJKIrTR0euFDAaXeESIcQYB5h53ehXQhTz
 mongoDB:
   uri: mongodb://127.0.0.1:27017
-  database: test2
+  database: platforms-watcher
 platforms:
   - name: bugcrowd
     url: http://185.110.189.78/watchtower/bugcrowd.json
