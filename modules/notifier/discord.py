@@ -22,8 +22,6 @@ def changed_program_message(data):
     embed = DiscordEmbed(title=f"{data['programName']}",
                          description=f"** {data['programName']} ** has changed!\n** Program type: ** {data['programType']}\n\n** Program page: ** [Click here]({data['programURL']})", color=data['color'])
     embed.set_thumbnail(url=data['logo'])
-    embed.set_footer(text='Powered by Ali Khalkhali',
-                     icon_url='https://cdn.discordapp.com/avatars/941457826662985808/488f3bcab0de041de57860b4e05e2e9f.webp')
     if data["platformName"] in ["HackerOne", "Intigriti"]:
         if data["newProgramType"]:
             embed.add_embed_field(name="Program type changed:",

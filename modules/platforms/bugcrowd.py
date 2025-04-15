@@ -14,40 +14,48 @@ def check_bugcrowd(tmp_dir, mUrl, first_time, db, config):
     bugcrowdFile.close()
     for program in bugcrowd:
         programName = program["name"]
-        programURL = "https://bugcrowd.com"+program["briefUrl"]
+        programURL = "https://bugcrowd.com" + program["briefUrl"]
         logo = program["logoUrl"]
-        data = {"programName": programName, "reward": {},"isRemoved": False, "newType": "", "newInScope": [], "removeInScope": [], "newOutOfScope": [], "removeOutOfScope": [], "programURL": programURL,
+        data = {"programName": programName, "reward": {}, "isRemoved": False, "newType": "", "newInScope": [],
+                "removeInScope": [], "newOutOfScope": [], "removeOutOfScope": [], "programURL": programURL,
                 "logo": logo, "platformName": "Bugcrowd", "isNewProgram": False, "color": 14584064}
         dataJson = {"programName": programName, "programURL": programURL, "programType": "",
                     "outOfScope": [], "inScope": [], "reward": {}}
         programKey = generate_program_key(programName, programURL)
         json_programs_key.append(programKey)
         watcherData = find_program(db, 'bugcrowd', programKey)
+        
         if watcherData is None:
             data["isNewProgram"] = True
             watcherData = {"programKey": programKey, "programName": programName, "programURL": programURL, "programType": "",
-                           "outOfScope": [], "inScope": [], "reward": {}}
-        for target in program["target_groups"]:
-            if target["in_scope"] == False:
-                for item in target["targets"]:
-                    dataJson["outOfScope"].append(item["name"])
+                        "outOfScope": [], "inScope": [], "reward": {}}
 
-            else:
-                for item in target["targets"]:
-                    dataJson["inScope"].append((item["name"]))
-            bounty = {
-                "min": "",
-                "max": ""
-            }
-            if "rewardSummary" in program and program["rewardSummary"] != None:
-                dataJson["programType"] = "rdp"
-                data["programType"] = "rdp"
-                bounty["max"] = program["rewardSummary"]["maxReward"]
-                bounty["min"] = program["rewardSummary"]["minReward"]
-            else:
-                dataJson["programType"] = "vdp"
-                data["programType"] = "vdp"
-            dataJson["reward"] = bounty
+        # Check if target_groups exists and is not None
+        if "target_groups" in program and program["target_groups"]:
+            for target in program["target_groups"]:
+                if target.get("inScope") == False:
+                    for item in target["targets"]:
+                        dataJson["outOfScope"].append(item["name"])
+                else:
+                    for item in target["targets"]:
+                        dataJson["inScope"].append(item["name"])
+        else:
+            # Handle the case where 'target_groups' is missing or None
+            print(f"Warning: 'target_groups' not found for program: {programName}")
+
+        bounty = {
+            "min": "",
+            "max": ""
+        }
+        if "rewardSummary" in program and program["rewardSummary"] is not None:
+            dataJson["programType"] = "rdp"
+            data["programType"] = "rdp"
+            bounty["max"] = program["rewardSummary"]["maxReward"]
+            bounty["min"] = program["rewardSummary"]["minReward"]
+        else:
+            dataJson["programType"] = "vdp"
+            data["programType"] = "vdp"
+        dataJson["reward"] = bounty
         newInScope = [i for i in dataJson["inScope"]
                       if i not in watcherData["inScope"]]
         removeInScope = [i for i in watcherData["inScope"]

@@ -10,7 +10,9 @@ from modules.notifier.discord import send_startup_message
 
 
 # load config file
-with open("config.yml", "r") as ymlfile:
+base_dir = os.path.dirname(os.path.abspath(__file__))
+config_path = os.path.join(base_dir, "config.yml")
+with open(config_path, "r") as ymlfile:
     cfg = yaml.full_load(ymlfile)
 discord_webhook = cfg['discordWebhook']['programs_watcher']
 platforms = {}
@@ -44,10 +46,10 @@ check_bugcrowd(tmp_dir, discord_webhook, first_time, db, platforms['bugcrowd'])
 check_hackerone(tmp_dir, discord_webhook, first_time, db, platforms['hackerone'])
 
 # checking intigriti
-check_intigriti(tmp_dir, discord_webhook, first_time, db, platforms['intigriti'])
+# check_intigriti(tmp_dir, discord_webhook, first_time, db, platforms['intigriti'])
 
 # checking yeswehack
-check_yeswehack(tmp_dir, discord_webhook, first_time, db, platforms['yeswehack'])
+# check_yeswehack(tmp_dir, discord_webhook, first_time, db, platforms['yeswehack'])
 
 # Clean up resources and remove tmp_dir
 client.close()
