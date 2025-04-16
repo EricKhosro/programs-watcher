@@ -34,32 +34,32 @@ platforms:
       removed_scope: true
       changed_scope: true
       new_type: true
-  - name: intigriti
-    url: http://185.110.189.78/watchtower/intigriti.json
-    monitor:
-      rdp: true
-      vdp: true
-      specific_programs: []
-      excluded_programs: [] 
-    notifications:
-      new_program: true
-      removed_program: true
-      new_scope: true
-      removed_scope: true
-      changed_scope: true
-      new_type: true
-      new_bounty_table: true
-  - name: yeswehack
-    url: http://185.110.189.78/watchtower/yeswehack.json
-    monitor:
-      rdp: true
-      vdp: true
-      specific_programs: []
-      excluded_programs: []
-    notifications:
-      new_program: true
-      removed_program: true
-      new_inscope: true
-      removed_inscope: true
-      new_type: true
-      new_bounty_table: true
+  # - name: intigriti
+  #   url: http://185.110.189.78/watchtower/intigriti.json
+  #   monitor:
+  #     rdp: true
+  #     vdp: true
+  #     specific_programs: []
+  #     excluded_programs: [] 
+  #   notifications:
+  #     new_program: true
+  #     removed_program: true
+  #     new_scope: true
+  #     removed_scope: true
+  #     changed_scope: true
+  #     new_type: true
+  #     new_bounty_table: true
+  # - name: yeswehack
+  #   url: http://185.110.189.78/watchtower/yeswehack.json
+  #   monitor:
+  #     rdp: true
+  #     vdp: true
+  #     specific_programs: []
+  #     excluded_programs: []
+  #   notifications:
+  #     new_program: true
+  #     removed_program: true
+  #     new_inscope: true
+  #     removed_inscope: true
+  #     new_type: true
+  #     new_bounty_table: true
