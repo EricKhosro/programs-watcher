@@ -79,7 +79,7 @@ def check_hackerone(tmp_dir, mUrl, first_time, db, config):
                     data["removedScope"].append(watcherData["scope"][i])
                     is_update = True
                 del watcherData["scope"][i]
-                hasChanged = True
+            hasChanged = True
         if dataJson["programType"] != watcherData["programType"]:
             notifi_status = notifications['new_type']
             if notifi_status:
