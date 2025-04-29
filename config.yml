@@ -1,5 +1,5 @@
 discordWebhook:
-  programs_watcher: https://discordapp.com/api/webhooks/1360897662471376907/AYsLeFuX2WhcJ9bUQnEyJsGKvH7VqXfo4zlJKIrTR0euFDAaXeESIcQYB5h53ehXQhTz
+  programs_watcher: https://discord.com/api/webhooks/1366440297814560788/ORYysllXs_jqfawaVmBMbUyK2Z-7PH8BmtnCjzYV6WYVs9eNDlwAEmnpRruw-Cyet0TR
 mongoDB:
   uri: mongodb://127.0.0.1:27017
   database: platforms-watcher
@@ -40,7 +40,7 @@ platforms:
   #     rdp: true
   #     vdp: true
   #     specific_programs: []
-  #     excluded_programs: [] 
+  #     excluded_programs: []
   #   notifications:
   #     new_program: true
   #     removed_program: true

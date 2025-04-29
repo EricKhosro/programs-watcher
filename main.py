@@ -6,7 +6,6 @@ from modules.platforms.bugcrowd import check_bugcrowd
 from modules.platforms.hackerone import check_hackerone
 from modules.platforms.intigriti import check_intigriti
 from modules.platforms.yeswehack import check_yeswehack
-from modules.notifier.discord import send_startup_message
 
 
 # load config file
@@ -54,6 +53,3 @@ check_hackerone(tmp_dir, discord_webhook, first_time, db, platforms['hackerone']
 # Clean up resources and remove tmp_dir
 client.close()
 shutil.rmtree(tmp_dir)
-
-if first_time:
-    send_startup_message(discord_webhook)

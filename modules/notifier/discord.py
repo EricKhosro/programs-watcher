@@ -65,7 +65,6 @@ def changed_program_message(data):
                 removeOutOfScope = '\n'.join(data['removeOutOfScope'])
                 add_field(embed, removeOutOfScope,
                           "Following out of scope removed:")
-    embed.add_embed_field(name=" ", value= "[Click here to Buy me a coffee ☕](https://www.buymeacoffee.com/alikhalkhali)", inline=False)
     return embed
 
 
@@ -73,8 +72,6 @@ def new_program_message(data):
     embed = DiscordEmbed(title=f"{data['programName']}",
                          description=f"** New program ** named** {data['programName']} ** added to platform!\n** Program type: ** {data['programType']}\n\n** Program page: ** [Click here]({data['programURL']})", color=data['color'])
     embed.set_thumbnail(url=data['logo'])
-    embed.set_footer(text='Powered by Ali Khalkhali',
-                     icon_url='https://cdn.discordapp.com/avatars/941457826662985808/488f3bcab0de041de57860b4e05e2e9f.webp')
     if data["platformName"] in ["HackerOne", "Intigriti"]:
         if data["platformName"] == "Intigriti":
             if data['newReward']:
@@ -97,17 +94,13 @@ def new_program_message(data):
                 newOutOfScope = '\n'.join(data['newOutOfScope'])
                 add_field(embed, newOutOfScope, "Out of scope:")
 
-    embed.add_embed_field(name=" ", value= "[Click here to Buy me a coffee ☕](https://www.buymeacoffee.com/alikhalkhali)", inline=False)
     return embed
 
 def removed_program_message(data):
     embed = DiscordEmbed(title=f"{data['programName']}",
                          description=f"Program named ** {data['programName']} ** has removed from platform!\n** Program type: ** {data['programType']}", color=data['color'])
     embed.set_thumbnail(url=data['logo'])
-    embed.set_footer(text='Powered by Ali Khalkhali',
-                     icon_url='https://cdn.discordapp.com/avatars/941457826662985808/488f3bcab0de041de57860b4e05e2e9f.webp')
 
-    embed.add_embed_field(name=" ", value= "[Click here to Buy me a coffee ☕](https://www.buymeacoffee.com/alikhalkhali)", inline=False)
     return embed
 
 def send_notification(data, webhook_url):
@@ -126,17 +119,3 @@ def send_notification(data, webhook_url):
         print(data["programName"])
         print("Error sending message:", response.content)
 
-def send_startup_message(webhook_url):
-    webhook = DiscordWebhook(
-        url=webhook_url, username="Programs Watcher", avatar_url="https://t3.ftcdn.net/jpg/00/91/64/62/360_F_91646202_b3K6ELfgM2E8QIwuNTlzco7K1r3mOJvp.jpg")
-    embed = DiscordEmbed(title=f"🎉 Successful Start of Programs Watcher 🎉",
-                         description= "Hi, welcome to ** Programs Watcher **! 🎉\nThe program has started successfully and is now waiting for a change. 🗼✨\n** Github page: ** https://github.com/Alikhalkhali/programs-watcher", color="23ff1f")
-    embed.set_footer(text='Powered by Ali Khalkhali',
-                     icon_url='https://cdn.discordapp.com/avatars/941457826662985808/488f3bcab0de041de57860b4e05e2e9f.webp')
-    embed.add_embed_field(name=" ", value= "[Click here to Buy me a coffee ☕](https://www.buymeacoffee.com/alikhalkhali)", inline=False)
-
-    webhook.add_embed(embed)
-    response = webhook.execute()
-
-    if response.status_code != 200:
-       print("There was an error sending the Discord message")

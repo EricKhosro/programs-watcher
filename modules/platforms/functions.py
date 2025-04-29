@@ -32,8 +32,8 @@ def check_send_notification(first_time, is_update, data, watcherData, monitor, n
     notify_status = False
 
     # Check if the program is in the specific programs list
-    if watcherData['programURL'] in monitor['specific_programs']:
-        pt_notify_status = True  # Allow notification if it's a specific program
+    # if watcherData['programURL'] in monitor['specific_programs']:
+    #     pt_notify_status = True  # Allow notification if it's a specific program
 
     # Monitor program types (RDP and VDP)
     if data['isNewProgram']:
